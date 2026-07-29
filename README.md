@@ -118,10 +118,6 @@ All tasks use subject-independent splits with 7-fold cross-validation. Protocols
 
 ## ✨ Headline Results
 
-<p align="center">
-  <img src="docs/assets/authg-net.png" alt="AuthG-Net architecture" width="100%">
-</p>
-
 - **> 96 %** liveness detection accuracy across all seven attack settings (with optimized channel selection).
 - **> 97 %** authentication accuracy; only **~1 %** degradation in the cross-utterance setting, thanks to domain-adversarial learning.
 - **Unseen-attack robustness.** Because AuthG-Live derives its decision threshold from genuine samples alone, it stays stable across all seven attack types, while attack-trained baselines degrade substantially — VOID and He et al. most of all.

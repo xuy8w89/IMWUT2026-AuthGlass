@@ -26,9 +26,19 @@ The consequence: **no attack samples are needed for training**, so there is no a
 
 ## AuthG-Net in one paragraph
 
-Each modality gets its own lightweight encoder — a single 3×3 conv (stride 1, 32 channels) + ReLU. AC and BC take log-Mel spectrograms zero-padded to (215, 128). SF concatenates TDT, ERT (padded to (215, 13)) and EDF (interpolated from (86, 13) to (215, 13)) along time, convolves, then projects to width 128; TDT frames below an AC-energy threshold are masked out to suppress low-energy instability. The three branches concatenate to 96 channels and feed a ResNet-18 backbone (first conv widened) that emits a **512-D embedding**.
+**What carries the performance here is the input representation and the training objective, not the network.** The backbone is a stock ResNet-18 used as a baseline encoder, and it is deliberately interchangeable — the contribution is what goes into it and what it is optimized for.
 
-Passphrase independence comes from domain-adversarial learning: a speaker classifier trains on the embedding directly, while a passphrase classifier sits behind a Gradient Reversal Layer, so the objective is `L = L_s − λ·L_p` with `λ = 1`. Both heads are 3-layer FC + softmax; optimizer is Adam. At enrollment the embedding is stored as the template; at test time cosine similarity against the template decides access.
+**What goes in.** Three complementary acoustic modalities, each with a lightweight encoder before fusion: AC and BC as log-Mel spectrograms, and SF as TDT, ERT, and EDF concatenated along time. Low-energy TDT frames are masked out using the AC signal energy, since delay estimates are unreliable where there is no signal to correlate.
+
+**What it is optimized for.** Passphrase independence, via domain-adversarial learning. A speaker classifier trains on the embedding directly, while a passphrase classifier sits behind a Gradient Reversal Layer, giving `L = L_s − λ·L_p` with `λ = 1`. The reversed gradient pushes the encoder to discard content information and keep only speaker identity. This is what holds cross-utterance degradation to ~1 %, and it is backbone-agnostic.
+
+At enrollment the embedding is stored as the user template; at test time cosine similarity against the template decides access. Exact layer shapes, padding sizes, and training hyperparameters are in the paper's appendix and will ship with the code.
+
+<p align="center">
+  <img src="../docs/assets/authg-net.png" alt="Multi-modal fusion and the domain-adversarial training branches of AuthG-Net" width="88%">
+</p>
+
+*Multi-modal fusion and the domain-adversarial branches: the three modality encoders feed a shared backbone that produces the user embedding; the speaker classifier attaches directly, while the passphrase classifier attaches through the Gradient Reversal Layer.*
 
 ## Live deployment
 
