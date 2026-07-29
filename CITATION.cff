@@ -1,0 +1,92 @@
+cff-version: 1.2.0
+message: "If you use AuthGlass (dataset, code, or hardware design), please cite the paper below."
+title: "AuthGlass: Benchmarking Voice Liveness Detection and Authentication on Smart Glasses via Comprehensive Acoustic Features"
+abstract: >-
+  With the rapid advancement of smart glasses, voice interaction has been widely adopted due to its
+  naturalness and convenience. However, its practical deployment is often undermined by vulnerability
+  to spoofing attacks, while no public dataset currently exists for voice liveness detection and
+  authentication in smart-glasses scenarios. To address this challenge, we first collect a
+  multi-acoustic-modal dataset comprising 16-channel audio data from 42 subjects, along with
+  corresponding attack samples covering two attack categories. Based on insights derived from this
+  collected data, we propose AuthG-Live, a sound-field-based voice liveness detection method, and
+  AuthG-Net, a multi-acoustic-modal authentication model. We further benchmark seven voice liveness
+  detection methods and four authentication methods across diverse acoustic modalities. The results
+  demonstrate that our proposed approach achieves state-of-the-art performance on four benchmark
+  tasks, and extensive ablation studies validate the generalizability of our methods under real-world
+  constraints. Finally, we release this dataset, termed AuthGlass, to facilitate future research on
+  voice liveness detection and authentication for smart glasses.
+type: dataset
+license: CC-BY-4.0
+repository-code: "https://github.com/xuy8w89/IMWUT2026-AuthGlass"
+keywords:
+  - smart glasses
+  - voice authentication
+  - liveness detection
+  - acoustic sensing
+  - sound field
+  - multi-modal
+  - dataset
+  - benchmark
+authors:
+  - family-names: Xu
+    given-names: Weiye
+    orcid: "https://orcid.org/0000-0001-5031-8154"
+    affiliation: Tsinghua University
+    email: xuwy24@mails.tsinghua.edu.cn
+  - family-names: Jiang
+    given-names: Zhang
+    orcid: "https://orcid.org/0009-0003-0932-7907"
+    affiliation: Tsinghua University
+  - family-names: Zheng
+    given-names: Siqi
+    orcid: "https://orcid.org/0009-0002-6787-4223"
+    affiliation: Tsinghua University
+  - family-names: Zhang
+    given-names: Xiyuxing
+    orcid: "https://orcid.org/0009-0002-9337-2278"
+    affiliation: Tsinghua University
+  - family-names: Zhang
+    given-names: Changhao
+    orcid: "https://orcid.org/0009-0005-1564-1876"
+    affiliation: Ant Group
+  - family-names: Liu
+    given-names: Jian
+    orcid: "https://orcid.org/0000-0002-5323-5343"
+    affiliation: Ant Group
+  - family-names: Wang
+    given-names: Weiqiang
+    orcid: "https://orcid.org/0000-0002-6159-619X"
+    affiliation: Ant Group
+  - family-names: Wang
+    given-names: Yuntao
+    orcid: "https://orcid.org/0000-0002-4249-8893"
+    affiliation: Tsinghua University
+    email: yuntaowang@tsinghua.edu.cn
+preferred-citation:
+  type: article
+  title: "AuthGlass: Benchmarking Voice Liveness Detection and Authentication on Smart Glasses via Comprehensive Acoustic Features"
+  journal: "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies"
+  volume: 10
+  issue: 3
+  year: 2026
+  month: 9
+  doi: "10.1145/3831980"
+  publisher:
+    name: "Association for Computing Machinery"
+  authors:
+    - family-names: Xu
+      given-names: Weiye
+    - family-names: Jiang
+      given-names: Zhang
+    - family-names: Zheng
+      given-names: Siqi
+    - family-names: Zhang
+      given-names: Xiyuxing
+    - family-names: Zhang
+      given-names: Changhao
+    - family-names: Liu
+      given-names: Jian
+    - family-names: Wang
+      given-names: Weiqiang
+    - family-names: Wang
+      given-names: Yuntao

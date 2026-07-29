@@ -1,0 +1,65 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Weiye Xu, Zhang Jiang, Siqi Zheng, Xiyuxing Zhang,
+Changhao Zhang, Jian Liu, Weiqiang Wang, Yuntao Wang.
+
+The AuthGlass dataset and the accompanying documentation in this repository are
+licensed under the Creative Commons Attribution 4.0 International License.
+
+You are free to:
+  - Share  — copy and redistribute the material in any medium or format
+  - Adapt  — remix, transform, and build upon the material for any purpose,
+             including commercially
+
+Under the following terms:
+  - Attribution — You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. You may do so in any reasonable
+    manner, but not in any way that suggests the licensor endorses you or your
+    use.
+  - No additional restrictions — You may not apply legal terms or technological
+    measures that legally restrict others from doing anything the license
+    permits.
+
+The full legal code is available at:
+  https://creativecommons.org/licenses/by/4.0/legalcode
+
+To satisfy the attribution requirement, please cite:
+
+  Weiye Xu, Zhang Jiang, Siqi Zheng, Xiyuxing Zhang, Changhao Zhang, Jian Liu,
+  Weiqiang Wang, and Yuntao Wang. 2026. AuthGlass: Benchmarking Voice Liveness
+  Detection and Authentication on Smart Glasses via Comprehensive Acoustic
+  Features. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 10, 3,
+  Article 180 (September 2026). https://doi.org/10.1145/3831980
+
+
+--------------------------------------------------------------------------------
+ADDENDUM — RESPONSIBLE USE OF HUMAN-SUBJECT DATA
+--------------------------------------------------------------------------------
+
+The AuthGlass dataset contains speech recordings collected from human
+participants under a protocol approved by an Institutional Review Board. All
+participants provided informed consent for the publication and research use of
+their anonymized data. All released recordings are anonymized.
+
+In addition to the license terms above, users of the dataset are asked to
+observe the following, consistent with the consent under which the data were
+collected:
+
+  1. Do not attempt to re-identify any participant, or to link the recordings
+     to any individual or to any other dataset for that purpose.
+  2. Do not use the data to build, train, or evaluate systems whose purpose is
+     to impersonate a specific individual, or to target individuals.
+  3. Redistribute the dataset only together with this license and addendum.
+
+These requests are a condition of the ethics approval under which the data were
+gathered, and reflect the expectations of the participants who contributed them.
+
+
+--------------------------------------------------------------------------------
+CODE
+--------------------------------------------------------------------------------
+
+Source code released in this repository (the reference implementations of
+AuthG-Live and AuthG-Net, the feature extraction pipeline, and the benchmark
+harness) will be licensed under the MIT License. A separate LICENSE file will
+accompany the code when it is published.
