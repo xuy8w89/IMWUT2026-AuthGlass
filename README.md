@@ -7,7 +7,8 @@
 [![Paper](https://img.shields.io/badge/Paper-IMWUT%202026-b31b1b.svg)](https://doi.org/10.1145/3831980)
 [![DOI](https://img.shields.io/badge/DOI-10.1145%2F3831980-blue.svg)](https://doi.org/10.1145/3831980)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Release-Coming%20Soon-orange.svg)](#-release-status)
+[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-Hugging%20Face-yellow.svg)](https://huggingface.co/datasets/JZ0102/AuthGlass_Dataset)
+[![Status](https://img.shields.io/badge/Code-Coming%20Soon-orange.svg)](#-release-status)
 
 Weiye Xu<sup>1</sup> · Zhang Jiang<sup>1</sup> · Siqi Zheng<sup>1</sup> · Xiyuxing Zhang<sup>1</sup> · Changhao Zhang<sup>2</sup> · Jian Liu<sup>2</sup> · Weiqiang Wang<sup>2</sup> · Yuntao Wang<sup>1†</sup>
 
@@ -25,20 +26,49 @@ Weiye Xu<sup>1</sup> · Zhang Jiang<sup>1</sup> · Siqi Zheng<sup>1</sup> · Xiy
 
 ## 🚧 Release Status
 
-> **This repository is a placeholder. The dataset, code, and hardware documentation are being prepared for release and will be published here.**
+> **The AuthGlass dataset is now available on Hugging Face: [huggingface.co/datasets/JZ0102/AuthGlass_Dataset](https://huggingface.co/datasets/JZ0102/AuthGlass_Dataset).** Code and hardware documentation are being prepared and will be published here.
 
-We are currently finalizing anonymization checks, packaging the multi-channel recordings, and cleaning up the reference implementation. Watch ⭐ this repository to be notified when each artifact lands.
+See [⬇️ Download the Dataset](#%EF%B8%8F-download-the-dataset) below, or [`dataset/README.md`](dataset/README.md) for the archive layout. Watch ⭐ this repository to be notified when the remaining artifacts land.
 
 | Artifact | Contents | Status |
 | :-- | :-- | :-- |
 | 📄 **Paper** | Camera-ready PDF + supplementary material | 🔜 Coming soon |
-| 🗂️ **AuthGlass dataset** | 16-channel, 96 kHz recordings — genuine + attack samples, with segmentation annotations | 🔜 Coming soon |
+| 🗂️ **AuthGlass dataset** | 16-channel, 96 kHz recordings — genuine + attack samples, with segmentation annotations | ✅ [Released on Hugging Face](https://huggingface.co/datasets/JZ0102/AuthGlass_Dataset) |
 | 🧠 **AuthG-Live** | Sound-field-based voice liveness detection (reference implementation) | 🔜 Coming soon |
 | 🧠 **AuthG-Net** | Multi-acoustic-modal authentication model (reference implementation) | 🔜 Coming soon |
 | 📊 **Benchmark suite** | Data splits, evaluation protocols, and baseline re-implementations for all 4 tasks | 🔜 Coming soon |
 | 🕶️ **Hardware** | DIY smart-glasses prototype: frame models, parts sourcing, and assembly guide | 🔜 Coming soon |
 
 **Questions in the meantime?** Open an [issue](../../issues) or email the corresponding authors (see [Contact](#-contact)).
+
+---
+
+## ⬇️ Download the Dataset
+
+The full dataset (~188 GB) is hosted on Hugging Face at **[huggingface.co/datasets/JZ0102/AuthGlass_Dataset](https://huggingface.co/datasets/JZ0102/AuthGlass_Dataset)** as eight tar archives, one per recording condition (~23.5 GB each):
+
+| Archive | Condition |
+| :-- | :-- |
+| `data_noattack.tar` | Genuine wearer speech |
+| `attack_1_artificial_throat.tar` | Set 1 — wearer-based replay (KEMAR torso–mouth simulator) |
+| `attack_2_front_100.tar` | Set 2 — loudspeaker 100 cm in front |
+| `attack_3_right_100.tar` | Set 3 — loudspeaker 100 cm to the right |
+| `attack_4_back_100.tar` | Set 4 — loudspeaker 100 cm behind |
+| `attack_5_left_100.tar` | Set 5 — loudspeaker 100 cm to the left |
+| `attack_6_front_50.tar` | Set 6 — loudspeaker 50 cm in front |
+| `attack_7_front_25.tar` | Set 7 — loudspeaker 25 cm in front |
+
+```bash
+pip install -U huggingface_hub
+
+# everything
+python dataset/download.py --extract
+
+# or pick what you need, e.g. genuine speech + attack sets 1 and 7
+python dataset/download.py --genuine --sets 1 7 --extract
+```
+
+Each recording is a 16-channel int16 NumPy array at 96 kHz. The on-disk layout, loading snippet, and segmentation annotations are documented in [`dataset/README.md`](dataset/README.md).
 
 ---
 
@@ -145,7 +175,7 @@ Frame models, a parts-sourcing list, and an assembly guide will be released unde
 
 ```
 IMWUT2026-AuthGlass/
-├── dataset/          # download scripts, dataset card, data-layout spec
+├── dataset/          # download.py, archive layout (dataset hosted on Hugging Face)
 ├── src/              # AuthG-Live, AuthG-Net, feature extraction, benchmark harness
 │   ├── features/     # AC/BC log-Mel, and SF features (ERT, TDT, EDF)
 │   ├── liveness/     # AuthG-Live + 7 liveness baselines

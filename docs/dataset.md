@@ -1,6 +1,6 @@
 # AuthGlass Dataset Card
 
-> 🚧 **The dataset is not yet downloadable.** This page documents what will be released, so that reviewers and prospective users can plan ahead. Numbers and definitions follow the IMWUT 2026 paper.
+> ⬇️ **Download:** the dataset is hosted on Hugging Face at [huggingface.co/datasets/JZ0102/AuthGlass_Dataset](https://huggingface.co/datasets/JZ0102/AuthGlass_Dataset). Archive layout, file format, and loading snippets are in [`../dataset/README.md`](../dataset/README.md). Numbers and definitions below follow the IMWUT 2026 paper.
 
 ## 1. Motivation
 
@@ -108,23 +108,25 @@ BC signals are first high-pass filtered (Butterworth, 100 Hz cutoff) to suppress
 | ERT / TDT | 96,000 Hz | 100–8,000 Hz | step 0.005 s, scaling factor 2000 |
 | EDF | 96,000 Hz | ≤ 8,000 Hz | `n_fft` 1024, hop 1024 |
 
-## 9. Planned Release Layout
+## 9. Release Layout
+
+The dataset ships as eight tar archives on [Hugging Face](https://huggingface.co/datasets/JZ0102/AuthGlass_Dataset), one per recording condition. Each archive extracts to a folder of per-subject directories; each subject directory holds one 16-channel, 96 kHz `int16` NumPy recording per passphrase (all six utterances in one take) plus the verified MAUS segmentation:
 
 ```
-dataset/
-├── genuine/
-│   └── S{01..42}/U{01..15}/V{1..3}_R{1,2}.wav      # 16-channel, 96 kHz
-├── attack_set1/                                     # wearer-based (KEMAR simulator)
-│   └── S{01..42}/U{01..15}/V{1..3}_R{1,2}.wav
-├── attack_set2..7/                                  # environment-based (loudspeaker)
-│   └── S{01..42}/U{01..15}/V{1..3}_R{1,2}.wav
-├── annotations/
-│   ├── segmentation/                                # MAUS alignments (verified)
-│   └── metadata.csv                                 # subject/utterance IDs, volume level, demographics
-└── splits/                                          # subject-independent 7-fold splits per task
+data_noattack/                  # genuine
+attack_1_artificial_throat/     # Set 1 (wearer-based, KEMAR simulator)
+attack_2_front_100/             # Set 2
+attack_3_right_100/             # Set 3
+attack_4_back_100/              # Set 4
+attack_5_left_100/              # Set 5
+attack_6_front_50/              # Set 6
+attack_7_front_25/              # Set 7
+└── <subject>/
+    ├── samp{1..15}/output.npy   # (n_samples, 16) int16 @ 96 kHz  (output_attack.npy in sets 2–3)
+    └── phoneme/samp{1..15}.csv  # MAUS segmentation: pauses as <p:> rows; utterances lie between them
 ```
 
-*The exact layout may change slightly before release; this section will be updated to match the shipped archive.*
+See [`../dataset/README.md`](../dataset/README.md) for the full file-format description and loading code.
 
 ## 10. Known Limitations
 
